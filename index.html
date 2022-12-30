@@ -26,19 +26,19 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for=" (item,id) in products " :key="item.id">
-                            <td> {{item.title}} </td>
-                            <td> NT${{item.origin_price}}</td>
-                            <td> NT${{item.price}} </td>
+                          <tr v-for=" (product,id) in products " :key="product.id">
+                            <td> {{product.title}} </td>
+                            <td> NT${{product.origin_price}}</td>
+                            <td> NT${{product.price}} </td>
                             <td>
-                                <div  v-if="item.is_enabled >= 1" class="text-success">
+                                <div  v-if="product.is_enabled" class="text-success">
                                     啟用
                                 </div>
-                                <div v-else="item.is_enabled < 1 ">
+                                <div v-else>
                                     不啟用
                                 </div>
                             </td>
-                            <td><button v-on:click=" productTemp = item " class="btn btn-primary" type="button">查看細節</button></td>
+                            <td><button v-on:click=" productTemp = product " class="btn btn-primary" type="button">查看細節</button></td>
                           </tr>
                         </tbody>
                       </table>
@@ -64,7 +64,7 @@
                         <!-- 主要內容 end -->
                         <!-- 多張圖片 start -->
                         <div class="d-flex" >
-                            <div class="mult-images" v-for=" imagesUrl in productTemp.imagesUrl">
+                            <div class="mult-images" v-for=" (imagesUrl,id) in productTemp.imagesUrl" :key="id">
                                 <img  :src="imagesUrl" alt="">
                             </div>
                         </div>
